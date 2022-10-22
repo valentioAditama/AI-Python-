@@ -1,36 +1,30 @@
 import cv2 
 import numpy as np 
 from PIL import Image 
-import os 
+import os
 
-# Path for face image database 
-path = 'dataset'
+path = './Dataset'
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-detector = cv2.CascadeClassifier('./Cascade/haarcascade_frontalface_default.xml')
+detector = cv2.CascadeClassifier("./Cascade/haarcascade_frontalface_default.xml")
 
-# function to get the images and label data 
-def getImagesAndLabels(path):
+def getImagesAndLables(path):
     imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
-    faceSamples = []
-    ids = []
+    faceSamples=[]
+    ids=[]
     for imagePath in imagePaths:
-        PIL_img = Image.open(imagePath).convert('L') # Grayscale 
-        img_numpy = np.array(PIL_img, 'uing8')
+        PIL_img = Image.open(imagePath).convert('L') 
+        img_numpy = np.array(PIL_img, 'uint8')
         id = int(os.path.split(imagePath)[-1].split(".")[1])
         faces = detector.detectMultiScale(img_numpy)
         for (x,y,w,h) in faces:
             faceSamples.append(img_numpy[y:y+h, x:x+w])
             ids.append(id)
-    return faceSamples,ids
+    return faceSamples, ids
+print('Training faces berhasil....')
 
-print("\n Training faces. akan segera di mulai....")
-
-faces.ids = getImagesAndLabels(path)
+faces,ids  = getImagesAndLables(path)
 recognizer.train(faces, np.array(ids))
 
-# Save the model into trainer/trainer.yml 
 recognizer.write('trainer/trainer.yml')
 
-# Print the number of faces trainer and end program 
-print('faces trained. exiting')
-Program.format(len(np.unique(ids)))
+print('faces trained. exiting'.format(len(np.unique(ids))))
