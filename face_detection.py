@@ -3,6 +3,7 @@ import cv2
 
 faceCascade = cv2.CascadeClassifier('./Cascade/haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FPS, 60)
 
 while (True):
     ret, img = cap.read()

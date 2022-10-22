@@ -23,7 +23,7 @@ while(True):
     k = cv2.waitKey(100)
     if k == 27:
         break 
-    elif count >= 30:
+    elif count >= 100:
         break 
 print("Exitting programs")
 cam.release()
