@@ -1,8 +1,8 @@
 import numpy as np 
 import cv2 
 
-faceCascade = cv2.CascadeClassifier('./haarcascade_frontalface_default.xml')
-eyesCascade = cv2.CascadeClassifier('./haarcascade_eye.xml')
+faceCascade = cv2.CascadeClassifier('./Cascade/haarcascade_frontalface_default.xml')
+eyesCascade = cv2.CascadeClassifier('./Cascade/haarcascade_eye.xml')
 cap = cv2.VideoCapture(0)
 
 while (True):
