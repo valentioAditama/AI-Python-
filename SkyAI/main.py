@@ -6,6 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+import os
+
 import time
 
 # Method
@@ -41,7 +43,7 @@ def welcome():
 
 
 def menu():
-    print('1. open google\n2. open youtube\n3. Quit\n4. Prank')
+    print('1. open google\n2. open youtube\n3. Prank\n4. Quit')
 
 
 # Duration Second Openned Selenium Chrome
@@ -69,7 +71,7 @@ def searchYoutube(command):
     driver = webdriver.Chrome()
     driver.get('https://www.youtube.com')
     formTextField = driver.find_elements(by=By.NAME, value='search_query')
-    formTextField[0].send_keys('python is')
+    formTextField[0].send_keys(command)
     btnSubmit = driver.find_elements(by=By.ID, value='search-icon-legacy')
     btnSubmit[0].send_keys(Keys.ENTER)
 
@@ -79,15 +81,17 @@ def searchYoutube(command):
     print('running.....')
 
 
+def prankYoutube(command):
+    driver = webdriver.Chrome()
+    driver.get(command)
+    driver.get(command)
+
+
 # Main Method
 if __name__ == '__main__':
     # testing area
-
-    # formTextField = driver.find_elements(by=By.NAME, value='q');
-    # formTextField[0].send_keys(command)
-    # time.sleep(3)
-    # btnSubmit = driver.find_elements(by=By.NAME, value='btnK')
-    # btnSubmit[0].send_keys(Keys.ENTER)
+    for x in range(4):
+        os.system('google-chrome')
 
     # Show My Method
     print()
@@ -101,27 +105,31 @@ if __name__ == '__main__':
             print('Opened Google...')
             print('waiting... ')
             time.sleep(1)
-            searchGoogle = input('Please Search > ')
-            print('Result Search = ', searchGoogle)
+            inputTextGoogle = input('Please Search > ')
+            print('Result Search = ', inputTextGoogle)
 
-            searchGoogle(searchGoogle)
+            searchGoogle(inputTextGoogle)
 
         elif ask == "2":
             print('Opened Youtube...')
             print('waiting... ')
             time.sleep(1)
-            searchYoutube = input('Please Search > ')
-            print('Result Search = ', searchYoutube)
+            inputTextYoutube = input('Please Search > ')
+            print('Result Search = ', inputTextYoutube)
 
-            searchYoutube(searchYoutube)
-            break
+            searchYoutube(inputTextYoutube)
 
         elif ask == "3":
-            print("coming soon")
-            quit(1)
-        elif ask == "4":
             print('========== WELCOME ==========')
-            print('')
+            print('1. Spamming Boom Chrome Prank Youtube')
+            print('2. Exit ')
+            choosePrank = input('Choose > ')
 
+            if choosePrank == "1":
+                linkVideos = input('Link Videos > ')
+
+        elif ask == "4":
+            break
+            SystemExit(1)
         else:
             print('nothing')
